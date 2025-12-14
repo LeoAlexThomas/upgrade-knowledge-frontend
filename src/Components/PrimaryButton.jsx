@@ -10,8 +10,8 @@ const PrimaryButton = ({
   return (
     <button
       className={`bg-primary text-white text-base font-medium rounded-md w-full max-w-full ${
-        fullWidth ? "" : "sm:max-w-50"
-      } p-2 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+        fullWidth ? "" : "sm:max-w-fit"
+      } py-2 px-4 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
       type={type}
       onClick={onClick}
       disabled={isDisabled}

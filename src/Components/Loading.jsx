@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loading = ({ showFullScreen }) => {
+const Loading = ({ showFullScreen, loadingLabel }) => {
   return (
     <div
       className={`flex flex-col gap-6 justify-center items-center ${
@@ -8,7 +8,9 @@ const Loading = ({ showFullScreen }) => {
       }`}
     >
       <i className="fa-solid fa-spinner fa-spin-pulse text-primary fa-2xl"></i>
-      <p className="text-lg font-medium text-center text-black">Loading</p>
+      <p className="text-lg font-medium text-center text-black">
+        {loadingLabel ?? "Loading"}
+      </p>
     </div>
   );
 };
