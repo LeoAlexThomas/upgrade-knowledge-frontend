@@ -5,7 +5,7 @@ import { SiInstagram } from "react-icons/si";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-accent py-8 px-4">
+    <footer className="w-full bg-neutral py-8 px-4">
       <div className="flex gap-4 items-center justify-center mb-4">
         <BrandContainer>
           <CgMail className="w-6 h-6" />
