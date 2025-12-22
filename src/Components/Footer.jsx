@@ -2,10 +2,19 @@ import { CgMail } from "react-icons/cg";
 import { LuFacebook } from "react-icons/lu";
 import { BsTwitterX } from "react-icons/bs";
 import { SiInstagram } from "react-icons/si";
+import { useLocation } from "react-router-dom";
+import { unAuthorizedPaths } from "../Utils/common";
 
 const Footer = () => {
+  const location = useLocation();
   return (
-    <footer className="w-full bg-neutral py-8 px-4">
+    <footer
+      className={`w-full bg-neutral py-8 px-4 ${
+        unAuthorizedPaths.some((path) => path === location.pathname)
+          ? "hidden"
+          : ""
+      }`}
+    >
       <div className="flex gap-4 items-center justify-center mb-4">
         <BrandContainer>
           <CgMail className="w-6 h-6" />
