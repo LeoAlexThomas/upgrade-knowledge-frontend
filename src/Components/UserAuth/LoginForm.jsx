@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import InputField from "./InputField";
-import PrimaryButton from "./PrimaryButton";
-import UserAuthTitle from "./UserAuthTitle";
-import useApi from "../Hooks/makeApiCalls";
+import InputField from "../FormComponents/InputField";
+import PrimaryButton from "../PrimaryButton";
+import UserAuthTitle from "../UserAuthTitle";
+import useApi from "../../Hooks/makeApiCalls";
 import { toast } from "react-toastify";
-import { setToken } from "../Utils/common";
+import { setToken } from "../../Utils/common";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -89,7 +89,7 @@ const LoginForm = () => {
         />
         <p>
           Don't have an account?{" "}
-          <a href="/register" className="text-primary font-bold">
+          <a href="/register" className="text-primary font-bold cursor-pointer">
             Register
           </a>{" "}
         </p>
