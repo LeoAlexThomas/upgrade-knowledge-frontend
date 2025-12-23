@@ -5,7 +5,6 @@ import HomePage from "./Pages/HomePage";
 import PageNotFound from "./Pages/PageNotFound";
 import Login from "./Pages/Login";
 import { ToastContainer } from "react-toastify";
-import Register from "./Pages/Register";
 
 const App = () => {
   return (
@@ -16,7 +15,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
           {/* No Match page [404 page not found] */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

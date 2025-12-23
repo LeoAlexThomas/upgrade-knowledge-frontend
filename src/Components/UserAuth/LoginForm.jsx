@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { setToken } from "../../Utils/common";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ onRegisterClicked }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -89,9 +89,12 @@ const LoginForm = () => {
         />
         <p>
           Don't have an account?{" "}
-          <a href="/register" className="text-primary font-bold cursor-pointer">
+          <span
+            className="text-primary font-bold cursor-pointer"
+            onClick={onRegisterClicked}
+          >
             Register
-          </a>{" "}
+          </span>{" "}
         </p>
       </form>
     </div>

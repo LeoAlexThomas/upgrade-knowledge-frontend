@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /* Remove text selection background color */
-::selection {
+/* ::selection {
   background-color: transparent;
   color: inherit;
-}
+} */
 
 @theme {
   --font-Title: "Poppins", sans-serif;
