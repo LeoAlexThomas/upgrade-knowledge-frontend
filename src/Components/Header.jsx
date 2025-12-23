@@ -1,7 +1,8 @@
 import Logo from "./Logo";
 import PrimaryButton from "./PrimaryButton";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getToken, unAuthorizedPaths } from "../Utils/common";
+import { getToken, removeToken, unAuthorizedPaths } from "../Utils/common";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const Header = () => {
   const location = useLocation();
@@ -12,6 +13,11 @@ const Header = () => {
   };
   const handleDashboardClick = () => {
     navigate("/dashboard");
+  };
+
+  const handleLogoutClick = () => {
+    removeToken();
+    navigate("/login");
   };
 
   return (
@@ -28,10 +34,18 @@ const Header = () => {
         {getToken() === null ? (
           <PrimaryButton buttonLabel="LOGIN" onClick={handleLoginClick} />
         ) : (
-          <PrimaryButton
-            buttonLabel="DASHBOARD"
-            onClick={handleDashboardClick}
-          />
+          <div className="flex gap-4 items-center">
+            <PrimaryButton
+              buttonLabel="DASHBOARD"
+              onClick={handleDashboardClick}
+            />
+            <div
+              className="h-10 w-10 rounded-full bg-primary flex justify-center items-center hover:bg-primary-hover cursor-pointer"
+              onClick={handleLogoutClick}
+            >
+              <AiOutlineLogout className="w-6 h-6 text-white" />
+            </div>
+          </div>
         )}
       </div>
     </header>

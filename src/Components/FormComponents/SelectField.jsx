@@ -49,7 +49,7 @@ const SelectField = ({
         onBlur={handleSelectBlur}
         onChange={handleDropdownOptionSelect}
         onClick={handleSelectClick}
-        className="col-span-6 border rounded-xl bg-neutral appearance-none p-4 pr-12 w-full flex-1 outline-none"
+        className="col-span-6 border rounded-xl bg-white appearance-none p-4 pr-12 w-full flex-1 outline-none"
       >
         {options.map((opt) => {
           return (

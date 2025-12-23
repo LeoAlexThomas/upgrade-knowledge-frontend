@@ -9,10 +9,11 @@ import { toast } from "react-toastify";
 import SelectField from "../FormComponents/SelectField";
 import { getUserRoleLabel, userRoles } from "../../Utils/common";
 
-const RegisterForm = () => {
+const RegisterForm = ({ onLoginClicked }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("student");
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading: isRegisterProcessing, makeApiCall } = useApi();
 
@@ -31,6 +32,7 @@ const RegisterForm = () => {
         name,
         email,
         password,
+        role,
       },
     });
 
@@ -41,7 +43,7 @@ const RegisterForm = () => {
     toast.success(
       response.response?.data?.message ?? "Registration successful"
     );
-    navigate("/login");
+    onLoginClicked();
   };
 
   return (
@@ -71,6 +73,18 @@ const RegisterForm = () => {
           value={email}
           id="email"
         />
+        <SelectField
+          isRequired={true}
+          name="role"
+          title="Role"
+          onChange={setRole}
+          value={role}
+          id="role"
+          options={userRoles.map((role) => ({
+            label: getUserRoleLabel(role),
+            value: role,
+          }))}
+        />
         <InputField
           isRequired={true}
           name="password"
@@ -89,18 +103,20 @@ const RegisterForm = () => {
           }
           onRightIconClicked={handleShowPassword}
         />
-        <PrimaryButton
-          buttonLabel="REGISTER"
-          type="submit"
-          fullWidth={true}
-          isLoading={isRegisterProcessing}
-          isDisabled={isRegisterProcessing}
-        />
-        <p>
+        <div className="w-full mt-4">
+          <PrimaryButton
+            buttonLabel="REGISTER"
+            type="submit"
+            fullWidth={true}
+            isLoading={isRegisterProcessing}
+            isDisabled={isRegisterProcessing}
+          />
+        </div>
+        <p className="text-base text-center">
           Already have an account?{" "}
           <span
             className="text-primary font-bold cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={onLoginClicked}
           >
             Login
           </span>

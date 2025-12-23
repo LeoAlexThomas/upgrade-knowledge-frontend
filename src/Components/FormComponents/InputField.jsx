@@ -19,7 +19,7 @@ const InputField = ({
           {title} {isRequired ? <span className="text-red-400">*</span> : ""}
         </p>
       )}
-      <div className="flex gap-2 border rounded-xl bg-neutral items-stretch">
+      <div className="flex gap-2 border rounded-xl bg-white items-stretch">
         <input
           id={id}
           type={type}
@@ -28,7 +28,7 @@ const InputField = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className={`p-4 pr-0 w-full font-body text-base font-medium outline-none bg-neutral rounded-xl text-black`}
+          className={`p-4 pr-0 w-full font-body text-base font-medium outline-none bg-white rounded-xl text-black`}
         />
         {!isNil(rightIcon) && (
           <div

@@ -15,4 +15,9 @@ export const getUserRoleLabel = (role) => {
   }
 };
 
-export const unAuthorizedPaths = ["/login", "/register"];
+export const unAuthorizedPaths = [
+  "/login",
+  "/register",
+  "/forgotPassword",
+  "/resetPassword",
+];
