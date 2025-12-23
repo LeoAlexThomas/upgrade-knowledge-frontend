@@ -7,6 +7,8 @@ import useApi from "../../Hooks/makeApiCalls";
 import { toast } from "react-toastify";
 import { setToken } from "../../Utils/common";
 import { useNavigate } from "react-router-dom";
+import isEmpty from "lodash/isEmpty";
+import isNil from "lodash/isNil";
 
 const LoginForm = ({ onRegisterClicked }) => {
   const [email, setEmail] = useState("");
@@ -80,6 +82,15 @@ const LoginForm = ({ onRegisterClicked }) => {
           }
           onRightIconClicked={handleShowPassword}
         />
+        <p className="text-xl font-bold text-end text-primary self-stretch">
+          <a
+            href={`/forgotPassword${
+              isNil(email) || isEmpty(email) ? "" : `?email=${email}`
+            }`}
+          >
+            Forgot Password
+          </a>
+        </p>
         <PrimaryButton
           buttonLabel="LOGIN"
           type="submit"
