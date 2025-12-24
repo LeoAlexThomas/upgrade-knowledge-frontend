@@ -4,13 +4,9 @@ import useFetchApiCall from "../Hooks/fetchApiCall";
 const UserInfoContext = createContext();
 
 export const UserInfoProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState(null);
-  const { item } = useFetchApiCall({ url: "/user/current" });
-
-  useEffect(() => {
-    console.log("item", item);
-    setUserInfo(item?.data);
-  }, [item]);
+  const { item, isLoading, error, mutate } = useFetchApiCall({
+    url: "/user/current",
+  });
 
   // const handleLoginClick = () => {
   //   navigate("/login");
@@ -45,7 +41,9 @@ export const UserInfoProvider = ({ children }) => {
   // }
 
   return (
-    <UserInfoContext.Provider value={{ user: userInfo }}>
+    <UserInfoContext.Provider
+      value={{ user: item?.data || null, isLoading, mutate, error }}
+    >
       {children}
     </UserInfoContext.Provider>
   );

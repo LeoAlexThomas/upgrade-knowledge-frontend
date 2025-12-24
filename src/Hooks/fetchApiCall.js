@@ -6,7 +6,7 @@ const useFetchApiCall = ({ url }) => {
 
   return {
     isLoading,
-    item: data?.data,
+    item: data?.data || null,
     error,
     mutate,
   };

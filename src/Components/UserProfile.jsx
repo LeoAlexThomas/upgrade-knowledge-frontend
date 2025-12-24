@@ -4,14 +4,17 @@ import { useUserInfoContext } from "../Context/UserInfoContext";
 import { getUserRoleLabel, removeToken } from "../Utils/common";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { MdPerson } from "react-icons/md";
+import Loading from "./Loading";
 
 const UserProfile = () => {
   const navigate = useNavigate();
-  const { user } = useUserInfoContext();
+  const { user, isLoading } = useUserInfoContext();
   const handleLogoutClick = () => {
     removeToken();
     navigate("/login");
   };
+
+  if (isLoading) return <Loading hideLabel={true} />;
 
   return (
     <Menu>
@@ -29,12 +32,20 @@ const UserProfile = () => {
       <MenuItems
         anchor="bottom"
         transition
-        className="p-2 w-48 bg-neutral rounded-lg shadow-lg mt-1 origin-top transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0"
+        className="w-48 bg-neutral rounded-lg shadow-lg mt-1 origin-top transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0"
       >
-        <MenuItem as="a" href="/profile">
-          My Profile
+        <MenuItem
+          as="a"
+          href="/profile"
+          className="block px-2 py-1 hover:bg-neutral-300 text-base font-semibold"
+        >
+          MY PROFILE
         </MenuItem>
-        <MenuItem as="button" onClick={handleLogoutClick}>
+        <MenuItem
+          as="button"
+          onClick={handleLogoutClick}
+          className="block px-2 py-1 w-full hover:bg-neutral-300 text-base font-semibold text-start cursor-pointer"
+        >
           LOGOUT
         </MenuItem>
       </MenuItems>
