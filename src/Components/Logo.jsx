@@ -1,8 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logo = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
-    <div className="flex gap-4 items-center">
+    <div
+      className="flex gap-4 items-center cursor-pointer"
+      onClick={handleLogoClick}
+    >
       <img
         src="/images/logo.jpg"
         alt="logo"
