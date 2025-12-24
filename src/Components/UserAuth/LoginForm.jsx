@@ -9,12 +9,14 @@ import { setToken } from "../../Utils/common";
 import { useNavigate } from "react-router-dom";
 import isEmpty from "lodash/isEmpty";
 import isNil from "lodash/isNil";
+import { useSWRConfig } from "swr";
 
 const LoginForm = ({ onRegisterClicked }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading: isLoginProcessing, makeApiCall } = useApi();
+  const { mutate } = useSWRConfig();
 
   const navigate = useNavigate();
 
@@ -44,6 +46,7 @@ const LoginForm = ({ onRegisterClicked }) => {
       return;
     }
     setToken(token);
+    mutate("/user/current");
     navigate("/");
   };
 
