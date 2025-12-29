@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-20 bg-secondary shadow-md ${
+      className={`w-full h-20 bg-primary shadow-md ${
         unAuthorizedPaths.some((path) => path === location.pathname)
           ? "hidden"
           : ""
