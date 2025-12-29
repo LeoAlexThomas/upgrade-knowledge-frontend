@@ -13,7 +13,7 @@ export const UserInfoProvider = ({ children }) => {
   // const handleLoginClick = () => {
   //   navigate("/login");
   // };
-  if (error && location.pathname !== "/login") {
+  if (!isLoading && error && location.pathname !== "/login") {
     return <Navigate to="/login" />;
   }
 
