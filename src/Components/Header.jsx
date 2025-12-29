@@ -14,13 +14,13 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-20 px-4 py-2 bg-secondary shadow-md ${
+      className={`w-full h-20 bg-secondary shadow-md ${
         unAuthorizedPaths.some((path) => path === location.pathname)
           ? "hidden"
           : ""
       }`}
     >
-      <div className=" flex justify-between w-full max-w-360 mx-auto items-center">
+      <div className=" flex justify-between w-full px-4 py-2  max-w-360 mx-auto items-center">
         <div className="grow">
           <Logo />
         </div>

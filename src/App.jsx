@@ -10,6 +10,8 @@ import ResetPassword from "./Pages/ResetPassword";
 import { UserInfoProvider } from "./Context/UserInfoContext";
 import { SWRConfig } from "swr";
 import api from "./Utils/api";
+import MyProfile from "./Pages/MyProfile";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -30,6 +32,14 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
+              <Route
+                path="/myProfile"
+                element={
+                  <ProtectedRoute>
+                    <MyProfile />
+                  </ProtectedRoute>
+                }
+              />
               {/* No Match page [404 page not found] */}
               <Route path="*" element={<PageNotFound />} />
             </Routes>

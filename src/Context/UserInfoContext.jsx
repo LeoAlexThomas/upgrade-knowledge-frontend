@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import useFetchApiCall from "../Hooks/fetchApiCall";
+import { Navigate, useLocation } from "react-router-dom";
 
 const UserInfoContext = createContext();
 
 export const UserInfoProvider = ({ children }) => {
+  const location = useLocation();
   const { item, isLoading, error, mutate } = useFetchApiCall({
     url: "/user/current",
   });
@@ -11,6 +13,9 @@ export const UserInfoProvider = ({ children }) => {
   // const handleLoginClick = () => {
   //   navigate("/login");
   // };
+  if (error && location.pathname !== "/login") {
+    return <Navigate to="/login" />;
+  }
 
   // if (error) {
   //   const message = error.response?.data?.message;
