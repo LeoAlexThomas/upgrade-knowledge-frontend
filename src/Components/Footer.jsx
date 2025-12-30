@@ -38,7 +38,7 @@ const Footer = () => {
 
 const BrandContainer = ({ children }) => {
   return (
-    <div className="w-10 h-10 bg-primary rounded-full content-center justify-items-center">
+    <div className="w-10 h-10 bg-primary text-white rounded-full content-center justify-items-center">
       {children}
     </div>
   );
