@@ -2,10 +2,12 @@ import React from "react";
 
 const ProfileSection = ({ title, children }) => {
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <h4 className="font-Title text-2xl font-semibold">{title}</h4>
-      <div className="flex gap-4 w-full">{children}</div>
-    </div>
+    <section className="pt-2 pl-4 flex flex-col gap-2 ">
+      <h4 className="px-1 font-Title text-2xl font-bold">{title}</h4>
+      <div className="px-1 py-2 flex flex-row gap-4 overflow-x-auto">
+        {children}
+      </div>
+    </section>
   );
 };
 

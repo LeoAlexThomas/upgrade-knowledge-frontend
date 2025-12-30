@@ -1,61 +1,105 @@
-import { useUserInfoContext } from "../Context/UserInfoContext";
-import EmptyMessage from "../Components/EmptyMessage.jsx";
-import { isEmpty } from "lodash";
 import ProfileSection from "../Components/ProfileSection.jsx";
-import { Navigate, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import PrimaryButton from "../Components/PrimaryButton.jsx";
+import { myLessons, myPayments, myTutors } from "../Utils/common.js";
+import LessonCard from "../Components/LessonCard.jsx";
+import ProfileHeader from "../Components/ProfileHeader.jsx";
+import TutorCard from "../Components/TutorCard.jsx";
+import PaymentInfoCard from "../Components/PaymentInfoCard.jsx";
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const { user } = useUserInfoContext();
+  // const { user } = useUserInfoContext();
 
-  if (!user) {
-    toast.error("Something went wrong, please try login again");
-    return <Navigate to="/login" />;
-  }
+  // if (!user) {
+  //   toast.error("Something went wrong, please try login again");
+  //   return <Navigate to="/login" />;
+  // }
 
   const handleGetLesson = () => {
     navigate("/lessons");
   };
 
+  const handleEditProfile = () => {};
+
+  const handleEditBio = () => {};
+
+  // const studentInfo = user.student;
+
   return (
-    <div className="max-w-360 h-full mx-auto px-4 py-2 flex gap-2 items-stretch">
-      <div className="flex flex-col gap-4 w-full max-w-80 ">
-        <h2 className="font-Title text-3xl font-bold">Basic info</h2>
-        <div>
-          <h4 className="font-Title text-xl font-bold">{user.name}</h4>
-          <p className="text-lg font-semibold text-neutral">{user.email}</p>
+    <div className="w-full max-w-360 mx-auto px-4 py-2 my-6 grid grid-cols-10 gap-4 ">
+      <div className="flex flex-col gap-4 col-span-2 ">
+        <h2 className="font-Title text-2xl font-bold mt-2">Basic info</h2>
+        <div className="flex flex-col items-center">
+          <div className="relative w-40 h-40 rounded-full shadow-md ">
+            <img
+              src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
+              alt=""
+              className="object-cover mb-2 absolute w-full h-full rounded-full "
+            />
+            {/* <div className="absolute bottom-0 right-0 bg-white rounded-full shadow-md p-2">
+              <MdEdit className="w-6 h-6 text-primary" />
+            </div> */}
+          </div>
+          <h4 className="font-Title text-xl font-bold text-center">
+            Leo Alex Thomas
+          </h4>
+          <p className="text-lg font-semibold text-neutral text-center mb-2">
+            leoalex960@gmail.com
+          </p>
+          <PrimaryButton
+            buttonLabel="Edit Profile"
+            onClick={handleEditProfile}
+          />
+        </div>
+        <div className="h-px w-full bg-neutral" />
+        <div className="flex flex-col gap-4">
+          <section>
+            <ProfileHeader title="Bio" onEdit={handleEditBio} />
+            <p className="text-sm font-medium text-neutral-600 ">
+              I am a student of IIT Chennai and I love coding and web
+              development. I am a student of IIT Chennai and I love coding and
+              web development. I am a student of IIT Chennai and I love coding
+              and web development
+            </p>
+          </section>
+          {/* <section>
+            <ProfileHeader title="Skills" onEdit={handleEditBio} />
+            <p className="text-sm font-medium text-neutral-600 ">
+              HTML, CSS, JS, React, Node, MongoDB, Python
+            </p>
+          </section> */}
         </div>
       </div>
-      <div className="w-0.5 h-full bg-neutral" />
-      <div className="flex flex-col gap-4 w-full">
+      <div className="col-span-8 w-full h-full flex flex-col gap-10 border-l border-neutral">
         <ProfileSection title="Lessons">
-          {isEmpty(user.lessons) ? (
-            <div className="w-full flex gap-4 flex-col justify-center items-center ">
-              <p className="text-xl font-semibold">Buy new lessons</p>
-              <PrimaryButton
-                buttonLabel="Get Lessons"
-                onClick={handleGetLesson}
-              />
-            </div>
-          ) : (
-            user.lessons.map((lesson) => {
-              return (
-                <Fragment key={lesson._id}>
-                  <LessonCard lesson={lesson} />
-                </Fragment>
-              );
-            })
-          )}
+          {myLessons.map((lesson) => {
+            return (
+              <Fragment key={lesson.id}>
+                <LessonCard lesson={lesson} />
+              </Fragment>
+            );
+          })}
         </ProfileSection>
-        <ProfileSection title="Lessons">
-          {isEmpty(user.lessons) ? (
-            <p>No Lessons</p>
-          ) : (
-            user.lessons.map((lesson) => <p>{lesson}</p>)
-          )}
+        <ProfileSection title="Tutors">
+          {myTutors.map((tutor) => {
+            return (
+              <Fragment key={tutor._id}>
+                <TutorCard tutor={tutor} />
+              </Fragment>
+            );
+          })}
+        </ProfileSection>
+
+        <ProfileSection title="Payment History">
+          {myPayments.map((payment) => {
+            return (
+              <Fragment key={payment._id}>
+                <PaymentInfoCard payment={payment} />
+              </Fragment>
+            );
+          })}
         </ProfileSection>
       </div>
     </div>

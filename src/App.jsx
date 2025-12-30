@@ -25,26 +25,26 @@ const App = () => {
             errorRetryInterval: 5000,
           }}
         >
-          <UserInfoProvider>
-            <Header />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgotPassword" element={<ForgotPassword />} />
-              <Route path="/resetPassword" element={<ResetPassword />} />
-              <Route
-                path="/myProfile"
-                element={
-                  <ProtectedRoute>
-                    <MyProfile />
-                  </ProtectedRoute>
-                }
-              />
-              {/* No Match page [404 page not found] */}
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-            <Footer />
-          </UserInfoProvider>
+          {/* <UserInfoProvider> */}
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route
+              path="/myProfile"
+              element={
+                // <ProtectedRoute>
+                <MyProfile />
+                // </ProtectedRoute>
+              }
+            />
+            {/* No Match page [404 page not found] */}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+          {/* </UserInfoProvider> */}
         </SWRConfig>
       </BrowserRouter>
     </div>
