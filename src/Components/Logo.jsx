@@ -18,7 +18,7 @@ const Logo = () => {
         alt="logo"
         className="w-12 h-12 rounded-full"
       />
-      <h4 className="font-Title text-2xl font-semibold">KnowUp</h4>
+      <h4 className="font-Title text-2xl font-semibold text-white">Up-Know</h4>
     </div>
   );
 };
