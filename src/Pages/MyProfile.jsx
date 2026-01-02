@@ -2,11 +2,19 @@ import ProfileSection from "../Components/ProfileSection.jsx";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import PrimaryButton from "../Components/PrimaryButton.jsx";
-import { myLessons, myPayments, myTutors } from "../Utils/common.js";
+import {
+  currentUser,
+  getUserRoleLabel,
+  myFeedbacks,
+  myLessons,
+  myPayments,
+  myTutors,
+} from "../Utils/common.js";
 import LessonCard from "../Components/LessonCard.jsx";
 import ProfileHeader from "../Components/ProfileHeader.jsx";
 import TutorCard from "../Components/TutorCard.jsx";
 import PaymentInfoCard from "../Components/PaymentInfoCard.jsx";
+import FeedbackCard from "../Components/FeedbackCard.jsx";
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -43,10 +51,13 @@ const MyProfile = () => {
             </div> */}
           </div>
           <h4 className="font-Title text-xl font-bold text-center">
-            Leo Alex Thomas
+            {currentUser.name}
           </h4>
-          <p className="text-lg font-semibold text-neutral text-center mb-2">
-            leoalex960@gmail.com
+          <p className="text-lg font-semibold text-neutral text-center">
+            {currentUser.email}
+          </p>
+          <p className="text-lg font-semibold text-primary text-center mb-2">
+            {getUserRoleLabel(currentUser.role)}
           </p>
           <PrimaryButton
             buttonLabel="Edit Profile"
@@ -58,18 +69,17 @@ const MyProfile = () => {
           <section>
             <ProfileHeader title="Bio" onEdit={handleEditBio} />
             <p className="text-sm font-medium text-neutral-600 ">
-              I am a student of IIT Chennai and I love coding and web
-              development. I am a student of IIT Chennai and I love coding and
-              web development. I am a student of IIT Chennai and I love coding
-              and web development
+              {currentUser.bio}
             </p>
           </section>
-          {/* <section>
-            <ProfileHeader title="Skills" onEdit={handleEditBio} />
-            <p className="text-sm font-medium text-neutral-600 ">
-              HTML, CSS, JS, React, Node, MongoDB, Python
-            </p>
-          </section> */}
+          {currentUser.role === "tutor" && (
+            <section>
+              <ProfileHeader title="Skills" onEdit={handleEditBio} />
+              <p className="text-sm font-medium text-neutral-600 ">
+                HTML, CSS, JS, React, Node, MongoDB, Python
+              </p>
+            </section>
+          )}
         </div>
       </div>
       <div className="col-span-8 w-full h-full flex flex-col gap-10 border-l border-neutral">
@@ -82,15 +92,29 @@ const MyProfile = () => {
             );
           })}
         </ProfileSection>
-        <ProfileSection title="Tutors">
-          {myTutors.map((tutor) => {
-            return (
-              <Fragment key={tutor._id}>
-                <TutorCard tutor={tutor} />
-              </Fragment>
-            );
-          })}
-        </ProfileSection>
+        {currentUser.role === "student" && (
+          <ProfileSection title="Tutors">
+            {myTutors.map((tutor) => {
+              return (
+                <Fragment key={tutor._id}>
+                  <TutorCard tutor={tutor} />
+                </Fragment>
+              );
+            })}
+          </ProfileSection>
+        )}
+
+        {currentUser.role === "tutor" && (
+          <ProfileSection title="Feedbacks">
+            {myFeedbacks.map((feedback) => {
+              return (
+                <Fragment key={feedback._id}>
+                  <FeedbackCard feedback={feedback} />
+                </Fragment>
+              );
+            })}
+          </ProfileSection>
+        )}
 
         <ProfileSection title="Payment History">
           {myPayments.map((payment) => {

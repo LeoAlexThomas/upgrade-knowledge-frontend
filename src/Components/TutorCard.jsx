@@ -14,12 +14,19 @@ const TutorCard = ({ tutor }) => {
         {tutor.name}
       </h3>
       <p className="text-base text-neutral-400 text-center ">{tutor.email}</p>
-      <Rating
-        readonly
-        initialRating={tutor.ratings}
-        emptySymbol={<IoMdStarOutline className="w-5 h-5 text-accent" />}
-        fullSymbol={<IoMdStar className="w-5 h-5 text-accent" />}
-      />
+      <div className="flex gap-1 mb-1 items-center justify-center">
+        <Rating
+          readonly
+          initialRating={tutor.overallRatings}
+          emptySymbol={
+            <IoMdStarOutline className="mt-0.5 w-5 h-5 text-accent" />
+          }
+          fullSymbol={<IoMdStar className="mt-0.5 w-5 h-5 text-accent" />}
+        />
+        <p className="text-xs">
+          {tutor.overallRatings}({tutor.totalRatings})
+        </p>
+      </div>
     </section>
   );
 };

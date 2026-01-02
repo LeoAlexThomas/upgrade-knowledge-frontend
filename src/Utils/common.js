@@ -4,6 +4,30 @@ export const setToken = (token) => localStorage.setItem(tokenName, token);
 export const getToken = () => localStorage.getItem(tokenName);
 export const removeToken = () => localStorage.removeItem(tokenName);
 
+export const currentUser = {
+  _id: 15647985,
+  name: "Leo Alex Thomas",
+  email: "leoalex960@gmail.com",
+  role: "tutor",
+  bio: "I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it.",
+  skills: [
+    "Java",
+    "Python",
+    "Javascript",
+    "HTML",
+    "CSS",
+    "C++",
+    "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+  ],
+  profileImage:
+    "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
+  createdAt: "2023-01-01T00:00:00.000Z",
+  updatedAt: "2023-01-01T00:00:00.000Z",
+};
+
 export const myLessons = [
   {
     id: 1,
@@ -142,6 +166,51 @@ export const myLessons = [
     },
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
+  },
+];
+
+export const myFeedbacks = [
+  {
+    _id: 546134684,
+    content:
+      "This is a feedback for maths course. It is really good and worth it for me as a student.",
+    ratings: 4.5,
+    lessonTitle: "Maths",
+  },
+  {
+    _id: 546134685,
+    content:
+      "This is a feedback for physics course. It is really good and worth it for me as a student.",
+    ratings: 4.5,
+    lessonTitle: "Physics",
+  },
+  {
+    _id: 546134686,
+    content:
+      "This is a feedback for chemistry course. It is really good and worth it for me as a student.",
+    ratings: 4.0,
+    lessonTitle: "Chemistry",
+  },
+  {
+    _id: 546134687,
+    content:
+      "This is a feedback for biology course. It is really good and worth it for me as a student.",
+    ratings: 5.0,
+    lessonTitle: "Biology",
+  },
+  {
+    _id: 546134688,
+    content:
+      "This is a feedback for english course. It is really good and worth it for me as a student.",
+    ratings: 4.0,
+    lessonTitle: "English",
+  },
+  {
+    _id: 546134689,
+    content:
+      "This is a feedback for history course. It is really good and worth it for me as a student.",
+    ratings: 3.5,
+    lessonTitle: "History",
   },
 ];
 
@@ -336,7 +405,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 4.5,
+    overallRatings: 4.5,
+    totalRatings: 10,
   },
   {
     _id: 2,
@@ -345,7 +415,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 4,
+    overallRatings: 4,
+    totalRatings: 10,
   },
   {
     _id: 3,
@@ -354,7 +425,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 3.5,
+    overallRatings: 3.5,
+    totalRatings: 10,
   },
   {
     _id: 4,
@@ -363,7 +435,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 4,
+    overallRatings: 4,
+    totalRatings: 10,
   },
   {
     _id: 5,
@@ -372,7 +445,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 4.5,
+    overallRatings: 4.5,
+    totalRatings: 10,
   },
   {
     _id: 6,
@@ -381,7 +455,8 @@ export const myTutors = [
     profileImage:
       "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
     role: "tutor",
-    ratings: 5,
+    overallRatings: 5,
+    totalRatings: 10,
   },
 ];
 

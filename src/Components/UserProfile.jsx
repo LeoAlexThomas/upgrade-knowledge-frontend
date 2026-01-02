@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { useUserInfoContext } from "../Context/UserInfoContext";
-import { getUserRoleLabel, removeToken } from "../Utils/common";
+import { currentUser, getUserRoleLabel, removeToken } from "../Utils/common";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { MdPerson } from "react-icons/md";
 // import Loading from "./Loading";
-// import isNil from "lodash/isNil";
+import isNil from "lodash/isNil";
 
 const UserProfile = () => {
   const location = useLocation();
@@ -22,23 +22,23 @@ const UserProfile = () => {
     <Menu>
       <MenuButton className="w-full">
         <div className="flex gap-3 items-center p-2 rounded-lg bg-neutral w-full">
-          <div className="w-12 h-12 rounded-full bg-secondary">
-            {/* {isNil(user.profileImage) ? ( */}
-            <MdPerson className="w-full h-full p-2" />
-            {/* ) : (
+          <div className="w-12 h-12 rounded-full bg-primary">
+            {isNil(currentUser.profileImage) ? (
+              <MdPerson className="w-full h-full p-2 text-white" />
+            ) : (
               <img
-                src={user.profileImage}
+                src={currentUser.profileImage}
                 alt="profile"
                 className="w-full h-full object-cover rounded-full shadow-md"
               />
-            )} */}
+            )}
           </div>
           <div className="flex flex-col">
             <p className="font-Title text-xl font-bold text-start line-clamp-1">
-              Leo Alex Thomas
+              {currentUser.name}
             </p>
-            <p className="text-sm text-secondary-hover font-bold text-start">
-              Student
+            <p className="text-sm text-primary-hover font-bold text-start">
+              {getUserRoleLabel(currentUser.role)}
             </p>
           </div>
         </div>
