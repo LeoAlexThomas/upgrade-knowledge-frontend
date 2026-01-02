@@ -77,13 +77,18 @@ const ResetPasswordForm = () => {
       }
       const userToken = searchParams.get("token");
 
-      const response = await makeApiCall({
+      makeApiCall({
         method: "PUT",
         url: "/auth/resetPassword",
         data: { password, token: userToken },
+        onSuccess: (data) => {
+          if (!data) {
+            return;
+          }
+          toast.success(data.message);
+          navigate("/login");
+        },
       });
-      toast.success(response.message);
-      navigate("/login");
     } catch (error) {
       toast.error(error.response?.data?.message ?? "Something went wrong");
     }
@@ -123,6 +128,7 @@ const ResetPasswordForm = () => {
       <PrimaryButton
         buttonLabel="RESET"
         type="submit"
+        showBiggerButton={true}
         fullWidth={true}
         isDisabled={isLoading}
       />

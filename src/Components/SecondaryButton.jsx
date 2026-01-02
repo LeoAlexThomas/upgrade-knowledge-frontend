@@ -1,23 +1,21 @@
 import React from "react";
 
-const PrimaryButton = ({
+const SecondaryButton = ({
   buttonLabel,
   onClick,
   type,
+  showBiggerButton,
   fullWidth,
   isLoading,
   isDisabled,
-  showBiggerButton,
 }) => {
   return (
     <button
       className={`${
-        isDisabled
-          ? "bg-primary-hover opacity-50"
-          : "bg-primary hover:bg-primary-hover"
-      } text-white text-base font-medium rounded-xl w-full max-w-full ${
+        isDisabled ? "bg-grey-100 opacity-50" : "bg-white hover:bg-grey-50"
+      } text-primary text-base font-medium rounded-xl w-full max-w-full ${
         showBiggerButton ? "py-4" : "py-1.5"
-      } px-4  ${fullWidth ? "" : "sm:max-w-fit"} ${
+      } px-4 border border-primary ${fullWidth ? "" : "sm:max-w-fit"} ${
         isDisabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
       type={type}
@@ -32,4 +30,4 @@ const PrimaryButton = ({
   );
 };
 
-export default PrimaryButton;
+export default SecondaryButton;

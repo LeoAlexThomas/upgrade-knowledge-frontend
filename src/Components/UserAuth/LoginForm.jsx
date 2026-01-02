@@ -33,21 +33,22 @@ const LoginForm = ({ onRegisterClicked }) => {
         email,
         password,
       },
+      onSuccess: (data) => {
+        if (!data) {
+          return;
+        }
+        toast.success("Login successful");
+        const token = response.data.token;
+        if (!token) {
+          console.log("User token not found");
+          toast.error("Something went wrong, please try again later");
+          return;
+        }
+        setToken(token);
+        mutate("/user/current");
+        navigate("/");
+      },
     });
-
-    if (!response) {
-      return;
-    }
-
-    const token = response.data.token;
-    if (!token) {
-      console.log("User token not found");
-      toast.error("Something went wrong, please try again later");
-      return;
-    }
-    setToken(token);
-    mutate("/user/current");
-    navigate("/");
   };
 
   return (
@@ -97,6 +98,7 @@ const LoginForm = ({ onRegisterClicked }) => {
         <PrimaryButton
           buttonLabel="LOGIN"
           type="submit"
+          showBiggerButton={true}
           fullWidth={true}
           isLoading={isLoginProcessing}
           isDisabled={isLoginProcessing}

@@ -1,6 +1,6 @@
 import ProfileSection from "../Components/ProfileSection.jsx";
 import { useNavigate } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import PrimaryButton from "../Components/PrimaryButton.jsx";
 import {
   currentUser,
@@ -15,9 +15,13 @@ import ProfileHeader from "../Components/ProfileHeader.jsx";
 import TutorCard from "../Components/TutorCard.jsx";
 import PaymentInfoCard from "../Components/PaymentInfoCard.jsx";
 import FeedbackCard from "../Components/FeedbackCard.jsx";
+import CustomModal from "../Components/Modals/CustomModal.jsx";
+import SecondaryButton from "../Components/SecondaryButton.jsx";
+import EditProfileForm from "../Components/EditProfileForm.jsx";
 
 const MyProfile = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   // const { user } = useUserInfoContext();
 
   // if (!user) {
@@ -25,11 +29,21 @@ const MyProfile = () => {
   //   return <Navigate to="/login" />;
   // }
 
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    setIsOpen(true);
+  };
+
   const handleGetLesson = () => {
     navigate("/lessons");
   };
 
-  const handleEditProfile = () => {};
+  const handleEditProfile = () => {
+    handleModalOpen();
+  };
 
   const handleEditBio = () => {};
 
@@ -37,6 +51,19 @@ const MyProfile = () => {
 
   return (
     <div className="w-full max-w-360 mx-auto px-4 py-2 my-6 grid grid-cols-10 gap-4 ">
+      <CustomModal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        title="Edit Profile"
+        actions={
+          <>
+            <PrimaryButton buttonLabel="Save" onClick={handleModalClose} />
+            <SecondaryButton buttonLabel="Cancel" onClick={handleModalClose} />
+          </>
+        }
+      >
+        <EditProfileForm />
+      </CustomModal>
       <div className="flex flex-col gap-4 col-span-2 ">
         <h2 className="font-Title text-2xl font-bold mt-2">Basic info</h2>
         <div className="flex flex-col items-center">

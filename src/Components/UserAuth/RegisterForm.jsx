@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useApi from "../../Hooks/makeApiCalls";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import UserAuthTitle from "../UserAuthTitle";
 import InputField from "../FormComponents/InputField";
 import PrimaryButton from "../PrimaryButton";
@@ -17,15 +16,13 @@ const RegisterForm = ({ onLoginClicked }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading: isRegisterProcessing, makeApiCall } = useApi();
 
-  const navigate = useNavigate();
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await makeApiCall({
+    makeApiCall({
       url: "/auth/register",
       method: "POST",
       data: {
@@ -34,16 +31,16 @@ const RegisterForm = ({ onLoginClicked }) => {
         password,
         role,
       },
+      onSuccess: (data) => {
+        if (!data) {
+          return;
+        }
+        toast.success(
+          response.response?.data?.message ?? "Registration successful"
+        );
+        onLoginClicked();
+      },
     });
-
-    if (!response) {
-      return;
-    }
-
-    toast.success(
-      response.response?.data?.message ?? "Registration successful"
-    );
-    onLoginClicked();
   };
 
   return (
@@ -107,6 +104,7 @@ const RegisterForm = ({ onLoginClicked }) => {
           <PrimaryButton
             buttonLabel="REGISTER"
             type="submit"
+            showBiggerButton={true}
             fullWidth={true}
             isLoading={isRegisterProcessing}
             isDisabled={isRegisterProcessing}
