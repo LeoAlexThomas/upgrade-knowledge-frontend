@@ -42,8 +42,8 @@ const MyProfile = () => {
         <div className="flex flex-col items-center">
           <div className="relative w-40 h-40 rounded-full shadow-md ">
             <img
-              src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
-              alt=""
+              src={currentUser.profileImage}
+              alt={"user profile"}
               className="object-cover mb-2 absolute w-full h-full rounded-full "
             />
             {/* <div className="absolute bottom-0 right-0 bg-white rounded-full shadow-md p-2">
