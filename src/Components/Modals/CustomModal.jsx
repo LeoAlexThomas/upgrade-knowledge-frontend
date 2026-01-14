@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import React from "react";
 
-const CustomModal = ({ isOpen, onClose, title, children, actions }) => {
+const CustomModal = ({ isOpen, onClose, title, children }) => {
   return (
     <Dialog
       open={isOpen}
@@ -14,7 +14,6 @@ const CustomModal = ({ isOpen, onClose, title, children, actions }) => {
           <DialogTitle className="text-xl font-bold mb-4">{title}</DialogTitle>
 
           <div className="mb-4">{children}</div>
-          <div className="flex justify-end gap-2">{actions}</div>
         </DialogPanel>
       </div>
     </Dialog>

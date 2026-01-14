@@ -3,8 +3,10 @@ import InputField from "./FormComponents/InputField";
 import { currentUser } from "../Utils/common";
 import { MdModeEdit } from "react-icons/md";
 import useApi from "../Hooks/makeApiCalls";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
-const EditProfileForm = () => {
+const EditProfileForm = ({ onClose }) => {
   const [name, setName] = useState(currentUser.name);
   const [profileImage, setProfileImage] = useState(currentUser.profileImage);
 
@@ -34,8 +36,16 @@ const EditProfileForm = () => {
     };
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+  };
+
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 justify-center items-center"
+    >
       <div className="relative w-40 h-40 overflow-hidden">
         <img
           src={profileImage}
@@ -66,7 +76,15 @@ const EditProfileForm = () => {
         isRequired={true}
         placeholder="Enter your name"
       />
-    </div>
+      <div className="flex w-full items-center justify-end gap-2">
+        <PrimaryButton
+          buttonLabel="Update"
+          type="submit"
+          isDisabled={isLoading}
+        />
+        <SecondaryButton buttonLabel="Cancel" onClick={onClose} />
+      </div>
+    </form>
   );
 };
 

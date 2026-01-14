@@ -16,12 +16,15 @@ import TutorCard from "../Components/TutorCard.jsx";
 import PaymentInfoCard from "../Components/PaymentInfoCard.jsx";
 import FeedbackCard from "../Components/FeedbackCard.jsx";
 import CustomModal from "../Components/Modals/CustomModal.jsx";
-import SecondaryButton from "../Components/SecondaryButton.jsx";
 import EditProfileForm from "../Components/EditProfileForm.jsx";
+import EditBioForm from "../Components/EditBioForm.jsx";
+import EditSkillForm from "../Components/EditSkillForm.jsx";
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isEditProfileOpen, setEditProfileIsOpen] = useState(false);
+  const [isEditBioOpen, setEditBioIsOpen] = useState(false);
+  const [isEditSkillOpen, setEditSkillIsOpen] = useState(false);
   // const { user } = useUserInfoContext();
 
   // if (!user) {
@@ -29,12 +32,28 @@ const MyProfile = () => {
   //   return <Navigate to="/login" />;
   // }
 
-  const handleModalClose = () => {
-    setIsOpen(false);
+  const handleEditProfileModalClose = () => {
+    setEditProfileIsOpen(false);
   };
 
-  const handleModalOpen = () => {
-    setIsOpen(true);
+  const handleEditProfileModalOpen = () => {
+    setEditProfileIsOpen(true);
+  };
+
+  const handleEditBioModalClose = () => {
+    setEditBioIsOpen(false);
+  };
+
+  const handleEditBioModalOpen = () => {
+    setEditBioIsOpen(true);
+  };
+
+  const handleEditSkillModalClose = () => {
+    setEditSkillIsOpen(false);
+  };
+
+  const handleEditSkillModalOpen = () => {
+    setEditSkillIsOpen(true);
   };
 
   const handleGetLesson = () => {
@@ -42,27 +61,41 @@ const MyProfile = () => {
   };
 
   const handleEditProfile = () => {
-    handleModalOpen();
+    handleEditProfileModalOpen();
   };
 
-  const handleEditBio = () => {};
+  const handleEditBio = () => {
+    handleEditBioModalOpen();
+  };
+
+  const handleEditSkill = () => {
+    handleEditSkillModalOpen();
+  };
 
   // const studentInfo = user.student;
 
   return (
     <div className="w-full max-w-360 mx-auto px-4 py-2 my-6 grid grid-cols-10 gap-4 ">
       <CustomModal
-        isOpen={isOpen}
-        onClose={handleModalClose}
+        isOpen={isEditProfileOpen}
+        onClose={handleEditProfileModalClose}
         title="Edit Profile"
-        actions={
-          <>
-            <PrimaryButton buttonLabel="Save" onClick={handleModalClose} />
-            <SecondaryButton buttonLabel="Cancel" onClick={handleModalClose} />
-          </>
-        }
       >
-        <EditProfileForm />
+        <EditProfileForm onClose={handleEditProfileModalClose} />
+      </CustomModal>
+      <CustomModal
+        isOpen={isEditBioOpen}
+        onClose={handleEditBioModalClose}
+        title="Edit Bio"
+      >
+        <EditBioForm onClose={handleEditBioModalClose} />
+      </CustomModal>
+      <CustomModal
+        isOpen={isEditSkillOpen}
+        onClose={handleEditSkillModalClose}
+        title="Edit Skills"
+      >
+        <EditSkillForm onClose={handleEditSkillModalClose} />
       </CustomModal>
       <div className="flex flex-col gap-4 col-span-2 ">
         <h2 className="font-Title text-2xl font-bold mt-2">Basic info</h2>
@@ -101,9 +134,9 @@ const MyProfile = () => {
           </section>
           {currentUser.role === "tutor" && (
             <section>
-              <ProfileHeader title="Skills" onEdit={handleEditBio} />
+              <ProfileHeader title="Skills" onEdit={handleEditSkill} />
               <p className="text-sm font-medium text-neutral-600 ">
-                HTML, CSS, JS, React, Node, MongoDB, Python
+                {currentUser.skills.join(", ")}
               </p>
             </section>
           )}
