@@ -9,12 +9,14 @@ import { setToken } from "../../Utils/common";
 import { useNavigate } from "react-router-dom";
 import isEmpty from "lodash/isEmpty";
 import isNil from "lodash/isNil";
+import { useSWRConfig } from "swr";
 
 const LoginForm = ({ onRegisterClicked }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading: isLoginProcessing, makeApiCall } = useApi();
+  const { mutate } = useSWRConfig();
 
   const navigate = useNavigate();
 
@@ -31,20 +33,22 @@ const LoginForm = ({ onRegisterClicked }) => {
         email,
         password,
       },
+      onSuccess: (data) => {
+        if (!data) {
+          return;
+        }
+        toast.success("Login successful");
+        const token = response.data.token;
+        if (!token) {
+          console.log("User token not found");
+          toast.error("Something went wrong, please try again later");
+          return;
+        }
+        setToken(token);
+        mutate("/user/current");
+        navigate("/");
+      },
     });
-
-    if (!response) {
-      return;
-    }
-
-    const token = response.data.token;
-    if (!token) {
-      console.log("User token not found");
-      toast.error("Something went wrong, please try again later");
-      return;
-    }
-    setToken(token);
-    navigate("/");
   };
 
   return (
@@ -94,6 +98,7 @@ const LoginForm = ({ onRegisterClicked }) => {
         <PrimaryButton
           buttonLabel="LOGIN"
           type="submit"
+          showBiggerButton={true}
           fullWidth={true}
           isLoading={isLoginProcessing}
           isDisabled={isLoginProcessing}

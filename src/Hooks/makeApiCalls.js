@@ -7,7 +7,14 @@ const useApi = () => {
   // handing loading state commonly here
   const [isLoading, setIsLoading] = useState(false);
 
-  const makeApiCall = async ({ method, url, data, onError }) => {
+  const makeApiCall = async ({
+    method,
+    url,
+    data,
+    onSuccess,
+    onError,
+    headers,
+  }) => {
     setIsLoading(true);
     try {
       // Making api call based on the parameters
@@ -15,8 +22,10 @@ const useApi = () => {
         method,
         url,
         data,
+        headers: { ...headers },
       });
       setIsLoading(false);
+      onSuccess && onSuccess(response.data);
       return response.data;
     } catch (error) {
       // Handling error of api call

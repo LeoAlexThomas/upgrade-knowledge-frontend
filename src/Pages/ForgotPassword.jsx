@@ -21,17 +21,19 @@ const ForgotPassword = () => {
 
   const handleGetResetLink = async (e) => {
     e.preventDefault();
-    const response = await makeApiCall({
+    makeApiCall({
       method: "POST",
       url: "/auth/getResetLink",
       data: { email },
+      onSuccess: (response) => {
+        // Check for the response is null, If null there is error it'll be handle in 'makeApiCall' method itself
+        if (!response) {
+          return;
+        }
+        // Showing Success toast message
+        toast.success(response.message);
+      },
     });
-    // Check for the response is null, If null there is error it'll be handle in 'makeApiCall' method itself
-    if (!response) {
-      return;
-    }
-    // Showing Success toast message
-    toast.success(response.message);
   };
 
   return (
@@ -66,6 +68,7 @@ const ForgotPassword = () => {
         <PrimaryButton
           buttonLabel="GET RESET LINK"
           type="submit"
+          showBiggerButton={true}
           fullWidth={true}
           isLoading={isLoading}
           isDisabled={isLoading}

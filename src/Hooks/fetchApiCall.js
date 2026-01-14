@@ -1,32 +1,15 @@
-import { useEffect, useState } from "react";
 import api from "../Utils/api";
+import useSWR from "swr";
 
-const fetchApiCall = ({ url }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [item, setItem] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchData();
-  }, [url]);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await api.get(url);
-      setIsLoading(false);
-      setItem(response.data);
-    } catch (error) {
-      setIsLoading(false);
-      setError(error);
-    }
-  };
+const useFetchApiCall = ({ url }) => {
+  const { data, error, isLoading, mutate } = useSWR(url, api);
 
   return {
     isLoading,
-    item,
+    item: data?.data || null,
     error,
+    mutate,
   };
 };
 
-export default fetchApiCall;
+export default useFetchApiCall;
