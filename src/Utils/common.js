@@ -4,6 +4,16 @@ export const setToken = (token) => localStorage.setItem(tokenName, token);
 export const getToken = () => localStorage.getItem(tokenName);
 export const removeToken = () => localStorage.removeItem(tokenName);
 
+export const subjectsList = [
+  "Maths",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "English",
+  "History",
+  "Geography",
+];
+
 export const currentUser = {
   _id: 15647985,
   name: "Leo Alex Thomas",

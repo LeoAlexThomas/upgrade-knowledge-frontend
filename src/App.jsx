@@ -14,6 +14,8 @@ import MyProfile from "./Pages/MyProfile";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Lessons from "./Pages/Lessons";
 import LessonIdPage from "./Pages/LessonIdPage";
+import SearchTutors from "./Pages/searchTutors";
+import { SearchTutorFiltersProvider } from "./Context/SearchTutorFiltersContext";
 
 const App = () => {
   return (
@@ -36,6 +38,14 @@ const App = () => {
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/lessons" element={<Lessons />} />
             <Route path="/lesson/:id" element={<LessonIdPage />} />
+            <Route
+              path="/searchTutors"
+              element={
+                <SearchTutorFiltersProvider>
+                  <SearchTutors />
+                </SearchTutorFiltersProvider>
+              }
+            />
             <Route
               path="/myProfile"
               element={

@@ -4,7 +4,7 @@ import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 
 const TutorCard = ({ tutor }) => {
   return (
-    <section className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer">
+    <section className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-3xs">
       <img
         src={tutor.profileImage}
         alt=""
@@ -12,9 +12,12 @@ const TutorCard = ({ tutor }) => {
       />
       <h3 className="font-Title text-xl font-semibold text-center ">
         {tutor.name}
+        {tutor.name}
       </h3>
-      <p className="text-base text-neutral-400 text-center ">{tutor.email}</p>
-      <div className="flex gap-1 mb-1 items-center justify-center">
+      <p className="text-base text-neutral-400 text-center break-all">
+        {tutor.email}
+      </p>
+      <div className="flex flex-wrap gap-1 mb-1 items-center justify-center">
         <Rating
           readonly
           initialRating={tutor.overallRatings}
