@@ -1,10 +1,18 @@
 import React from "react";
 import Rating from "react-rating";
 import { IoMdStar, IoMdStarOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const TutorCard = ({ tutor }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/profile/${tutor._id}`);
+  };
   return (
-    <section className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-xs">
+    <section
+      className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-xs"
+      onClick={handleClick}
+    >
       <img
         src={tutor.profileImage}
         alt=""

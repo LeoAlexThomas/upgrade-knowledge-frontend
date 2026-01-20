@@ -38,6 +38,72 @@ export const currentUser = {
   updatedAt: "2023-01-01T00:00:00.000Z",
 };
 
+export const otherUser = {
+  _id: 98765432,
+  name: "John Andrew",
+  email: "johnandrew960@gmail.com",
+  role: "tutor",
+  bio: "I am a tutor from UK and I have been teaching for 10 years. I specialize in Mathematics and Physics. I love to help students achieve their goals and excel in their studies.",
+  skills: ["Java", "Python", "Javascript", "HTML", "CSS", "C++"],
+  overallRatings: 4.5,
+  totalRatings: 25,
+  profileImage:
+    "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
+  createdAt: "2023-01-01T00:00:00.000Z",
+  updatedAt: "2023-01-01T00:00:00.000Z",
+};
+
+export const tutorsLessons = [
+  {
+    id: 1,
+    title: "Maths",
+    description:
+      "This is a maths course for beginners to advanced learners. It covers all the topics from basic arithmetic to advanced calculus. It is designed to help students understand the concepts and apply them in real life scenarios. Whether you are a beginner or an advanced learner, this course has something for everyone.",
+    image:
+      "https://static.vecteezy.com/system/resources/thumbnails/033/032/466/small/technology-background-sci-fi-futuristic-vector.jpg",
+    sessionStartDate: "2026-01-01T00:00:00.000Z",
+    sessionEndDate: "2026-01-31T00:00:00.000Z",
+    tutor: {
+      id: 1,
+      name: "John Doe",
+      email: "MwBQ3@example.com",
+      role: "tutor",
+    },
+  },
+  {
+    id: 2,
+    title: "Physics",
+    description:
+      "This is a physics course for beginners to advanced learners. It covers all the topics from basic mechanics to advanced quantum physics. It is designed to help students understand the concepts and apply them in real life scenarios. Whether you are a beginner or an advanced learner, this course has something for everyone.",
+    image:
+      "https://png.pngtree.com/thumb_back/fh260/background/20220427/pngtree-blue-desktop-wallpaper-with-bokeh-light-bg-shiny-illustration-photo-image_13267726.jpg",
+    sessionStartDate: "2026-01-01T00:00:00.000Z",
+    sessionEndDate: "2026-01-31T00:00:00.000Z",
+    tutor: {
+      id: 1,
+      name: "John Andrew",
+      email: "johnandrew960@gmail.com",
+      role: "tutor",
+    },
+  },
+  {
+    id: 3,
+    title: "Chemistry",
+    description:
+      "This is a chemistry course for beginners to advanced learners. It covers all the topics from basic atomic structure to advanced organic chemistry. It is designed to help students understand the concepts and apply them in real life scenarios. Whether you are a beginner or an advanced learner, this course has something for everyone.",
+    image:
+      "https://png.pngtree.com/thumb_back/fh260/background/20220427/pngtree-blue-desktop-wallpaper-with-bokeh-light-bg-shiny-illustration-photo-image_13267726.jpg",
+    sessionStartDate: "2026-01-01T00:00:00.000Z",
+    sessionEndDate: "2026-01-31T00:00:00.000Z",
+    tutor: {
+      id: 1,
+      name: "John Andrew",
+      email: "johnandrew960@gmail.com",
+      role: "tutor",
+    },
+  },
+];
+
 export const myLessons = [
   {
     id: 1,
