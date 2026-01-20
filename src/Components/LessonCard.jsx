@@ -1,20 +1,33 @@
 import React from "react";
 import { MdDateRange } from "react-icons/md";
 import { getFormattedDate, getLessonStatus } from "../Utils/common";
+import { useNavigate } from "react-router-dom";
 
 const LessonCard = ({ lesson }) => {
+  const navigate = useNavigate();
   const lessonStatus = getLessonStatus(
     lesson.sessionStartDate,
     lesson.sessionEndDate
   ); // lesson status
+
+  const handleLessonClick = () => {
+    navigate(`/lesson/${lesson.id}`);
+  };
+
   return (
-    <div className="relative shrink-0 w-xs rounded-lg shadow-md overflow-hidden">
+    <div
+      className="relative shrink-0 w-xs rounded-lg shadow-md overflow-hidden cursor-pointer"
+      onClick={handleLessonClick}
+    >
       <img src={lesson.image} alt="" className="object-cover w-full h-30 " />
       <h5 className="font-Title text-xl font-bold my-2 px-4">{lesson.title}</h5>
-      <p className="text-base font-medium px-4 text-neutral-400 line-clamp-2 mb-2">
+      <p className="text-base font-medium px-4 text-neutral-400 line-clamp-2 mb-1">
         {lesson.description}
       </p>
-      <div className="p-4">
+      <p className="text-sm font-medium px-4 line-clamp-2">
+        Tutor: {lesson.tutor.name}
+      </p>
+      <div className="pt-2 pb-4 px-4">
         <div className="flex items-center gap-1">
           <MdDateRange className="w-5 h-5 text-primary" />
           <p className="text-sm text-neutral-500 ">

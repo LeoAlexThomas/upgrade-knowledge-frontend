@@ -4,6 +4,16 @@ export const setToken = (token) => localStorage.setItem(tokenName, token);
 export const getToken = () => localStorage.getItem(tokenName);
 export const removeToken = () => localStorage.removeItem(tokenName);
 
+export const subjectsList = [
+  "Maths",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "English",
+  "History",
+  "Geography",
+];
+
 export const currentUser = {
   _id: 15647985,
   name: "Leo Alex Thomas",
@@ -218,7 +228,8 @@ export const allLessons = [
   {
     id: 1,
     title: "Maths",
-    description: "This is a maths course",
+    description:
+      "This is a maths course for beginners to advanced learners. It covers all the topics from basic arithmetic to advanced calculus. It is designed to help students understand the concepts and apply them in real life scenarios. Whether you are a beginner or an advanced learner, this course has something for everyone.",
     image:
       "https://png.pngtree.com/thumb_back/fh260/background/20220427/pngtree-blue-desktop-wallpaper-with-bokeh-light-bg-shiny-illustration-photo-image_13267726.jpg",
     sessionStartDate: "2023-01-01",
@@ -228,6 +239,11 @@ export const allLessons = [
       name: "John Doe",
       email: "MwBQ3@example.com",
       role: "tutor",
+    },
+    payment: {
+      amount: 199,
+      isPaid: true,
+      paymentDate: "2023-01-01T00:00:00.000Z",
     },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
@@ -247,6 +263,11 @@ export const allLessons = [
       email: "johnmathew@example.com",
       role: "tutor",
     },
+    payment: {
+      amount: 299,
+      isPaid: false,
+      paymentDate: null,
+    },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
@@ -264,6 +285,11 @@ export const allLessons = [
       name: "Elezabath",
       email: "elezabath@example.com",
       role: "tutor",
+    },
+    payment: {
+      amount: 399,
+      isPaid: true,
+      paymentDate: "2023-01-01T00:00:00.000Z",
     },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
@@ -283,6 +309,11 @@ export const allLessons = [
       email: "nickDoe@example.com",
       role: "tutor",
     },
+    payment: {
+      amount: 499,
+      isPaid: false,
+      paymentDate: null,
+    },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
@@ -300,6 +331,11 @@ export const allLessons = [
       name: "Steve Doe",
       email: "steveDoe@example.com",
       role: "tutor",
+    },
+    payment: {
+      amount: 599,
+      isPaid: true,
+      paymentDate: "2023-01-01T00:00:00.000Z",
     },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
@@ -319,6 +355,11 @@ export const allLessons = [
       email: "stefanDoe@example.com",
       role: "tutor",
     },
+    payment: {
+      amount: 699,
+      isPaid: false,
+      paymentDate: null,
+    },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
@@ -336,6 +377,11 @@ export const allLessons = [
       name: "tim Doe",
       email: "timDoe@example.com",
       role: "tutor",
+    },
+    payment: {
+      amount: 799,
+      isPaid: true,
+      paymentDate: "2023-01-01T00:00:00.000Z",
     },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
@@ -355,6 +401,11 @@ export const allLessons = [
       email: "allenDoe@example.com",
       role: "tutor",
     },
+    payment: {
+      amount: 899,
+      isPaid: false,
+      paymentDate: null,
+    },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
@@ -373,6 +424,11 @@ export const allLessons = [
       email: "joeDoe@example.com",
       role: "tutor",
     },
+    payment: {
+      amount: 999,
+      isPaid: true,
+      paymentDate: "2023-01-01T00:00:00.000Z",
+    },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
@@ -390,6 +446,11 @@ export const allLessons = [
       name: "mysty Doe",
       email: "mystyDoe@example.com",
       role: "tutor",
+    },
+    payment: {
+      amount: 1099,
+      isPaid: false,
+      paymentDate: null,
     },
     student: null,
     createdAt: "2023-01-01T00:00:00.000Z",
