@@ -104,13 +104,13 @@ const TutorFilter = () => {
       <div className="mb-2">
         <h3 className="font-Title text-lg font-medium mb-1">Price Range</h3>
         <p className="text-sm font-medium mb-3">
-          ${priceRange.min} - ${priceRange.max}
+          ${priceRange.min ?? 1} - ${priceRange.max ?? 1000}
         </p>
         <RangeSlider
           min={1}
           max={1000}
           step={1}
-          value={[priceRange.min, priceRange.max]}
+          value={[priceRange.min ?? 1, priceRange.max ?? 1000]}
           defaultValue={[1, 1000]}
           onInput={(value) => {
             updatePriceRange({ min: value[0], max: value[1] });
