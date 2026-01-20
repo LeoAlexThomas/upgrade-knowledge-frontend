@@ -4,7 +4,7 @@ import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 
 const TutorCard = ({ tutor }) => {
   return (
-    <section className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-3xs">
+    <section className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-xs">
       <img
         src={tutor.profileImage}
         alt=""

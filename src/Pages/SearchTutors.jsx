@@ -1,13 +1,10 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import TutorCard from "../Components/TutorCard";
 import { myTutors, subjectsList } from "../Utils/common";
 import { useSearchTutorFiltersContext } from "../Context/SearchTutorFiltersContext";
-import SelectField from "../Components/FormComponents/SelectField";
 import { MultiSelect } from "react-multi-select-component";
-import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import { isNil } from "lodash";
 import { Input, Select } from "@headlessui/react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
@@ -18,10 +15,10 @@ const SearchTutors = () => {
   return (
     <div className="w-full max-w-360 mx-auto px-4 py-2 my-8">
       {/* Implement pagination */}
-      <div className="grid grid-cols-15 gap-4">
-        <main className="col-span-12">
+      <div className="grid grid-cols-20 gap-4">
+        <main className="col-span-15">
           <h2 className="font-Title text-2xl font-bold mt-2 mb-8">Tutors</h2>
-          <div className="flex flex-wrap gap-4 justify-center ">
+          <div className="flex flex-wrap gap-8 justify-center ">
             {[...myTutors, ...myTutors, ...myTutors].map((tutor, index) => {
               return (
                 <Fragment key={`${tutor._id}-${index}`}>
@@ -31,7 +28,7 @@ const SearchTutors = () => {
             })}
           </div>
         </main>
-        <aside className="col-span-3">
+        <aside className="col-span-5">
           <TutorFilter />
         </aside>
       </div>
@@ -52,7 +49,7 @@ const TutorFilter = () => {
   } = useSearchTutorFiltersContext();
 
   return (
-    <div className="flex flex-col gap-3 p-4 w-full mb-4 shadow-2xl rounded-2xl">
+    <div className="flex flex-col gap-3 p-4 w-full mb-4 shadow-md rounded-2xl">
       <h3 className="font-Title text-xl font-bold mb-2">Filters</h3>
       <div>
         <h3 className="font-Title text-lg font-medium mb-1">Subjects</h3>
@@ -68,7 +65,6 @@ const TutorFilter = () => {
             selectSomeItems: "Select Subjects",
             search: "Search Subjects",
           }}
-          className="max-w-56"
         />
       </div>
       <div>
@@ -79,7 +75,7 @@ const TutorFilter = () => {
             onChange={(e) => updateRatings(e.target.value)}
             label="Rating"
             placeholder="Select Rating"
-            className="w-full max-w-56 border rounded-md border-gray-300 bg-white appearance-none p-2 pr-12 "
+            className="w-full border rounded-md border-gray-300 bg-white appearance-none p-2 pr-12 "
           >
             <option value={0}>All Ratings</option>
             <option value={5}>5 Stars</option>
@@ -95,7 +91,7 @@ const TutorFilter = () => {
         <h3 className="font-Title text-lg font-medium mb-1">Available Date</h3>
         <Input
           type="date"
-          className="w-full max-w-56 border rounded-lg p-2"
+          className="w-full border rounded-lg p-2"
           value={
             availability?.toISOString().split("T")[0] ??
             `${new Date().toISOString().split("T")[0]}`
@@ -105,16 +101,21 @@ const TutorFilter = () => {
           onChange={(e) => updateAvailability(e.target.value)}
         />
       </div>
-      <div>
+      <div className="mb-2">
         <h3 className="font-Title text-lg font-medium mb-1">Price Range</h3>
+        <p className="text-sm font-medium mb-3">
+          ${priceRange.min} - ${priceRange.max}
+        </p>
         <RangeSlider
-          min={100}
-          max={10000}
-          defaultValue={[0, 10000]}
+          min={1}
+          max={1000}
+          step={1}
           value={[priceRange.min, priceRange.max]}
+          defaultValue={[1, 1000]}
           onInput={(value) => {
             updatePriceRange({ min: value[0], max: value[1] });
           }}
+          className="z-0"
         />
       </div>
     </div>
