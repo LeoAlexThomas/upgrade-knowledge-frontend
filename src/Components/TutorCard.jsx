@@ -10,7 +10,7 @@ const TutorCard = ({ tutor }) => {
   };
   return (
     <section
-      className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer"
+      className="flex flex-col items-center gap-2 rounded-lg shadow-md p-4 cursor-pointer w-full max-w-xs"
       onClick={handleClick}
     >
       <img
@@ -20,9 +20,12 @@ const TutorCard = ({ tutor }) => {
       />
       <h3 className="font-Title text-xl font-semibold text-center ">
         {tutor.name}
+        {tutor.name}
       </h3>
-      <p className="text-base text-neutral-400 text-center ">{tutor.email}</p>
-      <div className="flex gap-1 mb-1 items-center justify-center">
+      <p className="text-base text-neutral-400 text-center break-all">
+        {tutor.email}
+      </p>
+      <div className="flex flex-wrap gap-1 mb-1 items-center justify-center">
         <Rating
           readonly
           initialRating={tutor.overallRatings}
