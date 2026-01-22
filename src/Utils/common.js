@@ -20,17 +20,62 @@ export const currentUser = {
   email: "leoalex960@gmail.com",
   role: "tutor",
   bio: "I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it.",
-  skills: [
-    "Java",
-    "Python",
-    "Javascript",
-    "HTML",
-    "CSS",
-    "C++",
-    "React",
-    "Node.js",
-    "Express.js",
-    "MongoDB",
+  subjects: [
+    "Maths",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "History",
+    "Geography",
+    "Computer Science",
+    "Art",
+    "Music",
+    "Physical Education",
+    "Economics",
+    "Business Studies",
+    "Psychology",
+    "Sociology",
+    "Philosophy",
+    "Political Science",
+    "Environmental Science",
+    "Statistics",
+    "Calculus",
+    "Algebra",
+    "Geometry",
+    "Trigonometry",
+    "Biochemistry",
+    "Microbiology",
+    "Astronomy",
+    "Astrophysics",
+    "Geology",
+    "Anthropology",
+    "Linguistics",
+    "Literature",
+    "Creative Writing",
+    "Drama",
+    "Film Studies",
+    "Photography",
+    "Graphic Design",
+    "Web Development",
+    "App Development",
+    "Data Science",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Cybersecurity",
+    "Networking",
+    "Cloud Computing",
+    "Software Engineering",
+    "Project Management",
+    "Marketing",
+    "Finance",
+    "Accounting",
+    "Law",
+    "Medicine",
+    "Nursing",
+    "Pharmacy",
+    "Dentistry",
+    "Veterinary Science",
   ],
   profileImage:
     "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
@@ -44,7 +89,18 @@ export const otherUser = {
   email: "johnandrew960@gmail.com",
   role: "tutor",
   bio: "I am a tutor from UK and I have been teaching for 10 years. I specialize in Mathematics and Physics. I love to help students achieve their goals and excel in their studies.",
-  skills: ["Java", "Python", "Javascript", "HTML", "CSS", "C++"],
+  subjects: [
+    "Anthropology",
+    "Linguistics",
+    "Literature",
+    "Creative Writing",
+    "Drama",
+    "Film Studies",
+    "Photography",
+    "Graphic Design",
+    "Web Development",
+    "App Development",
+  ],
   overallRatings: 4.5,
   totalRatings: 25,
   profileImage:
@@ -639,14 +695,32 @@ export const myPayments = [
   },
 ];
 
+export const tutorAvailabilitySlots = [
+  "2026-01-21T06:30:00.000Z",
+  "2026-01-21T08:30:00.000Z",
+  "2026-01-21T10:30:00.000Z",
+  "2026-01-21T12:30:00.000Z",
+  "2026-01-21T14:00:00.000Z",
+  "2026-01-21T06:30:00.000Z",
+  "2026-01-21T08:30:00.000Z",
+  "2026-01-21T10:30:00.000Z",
+  "2026-01-21T12:30:00.000Z",
+  "2026-01-21T14:00:00.000Z",
+  "2026-01-21T06:30:00.000Z",
+  "2026-01-21T08:30:00.000Z",
+  "2026-01-21T10:30:00.000Z",
+  "2026-01-21T12:30:00.000Z",
+  "2026-01-21T14:00:00.000Z",
+];
+
 export const userRoles = ["tutor", "student"];
 
 export const getUserRoleLabel = (role) => {
   switch (role) {
     case "tutor":
-      return "Tutor";
+      return "TUTOR";
     case "student":
-      return "Student";
+      return "STUDENT";
   }
 };
 
@@ -663,6 +737,18 @@ export const getFormattedDate = (dateString) => {
   const month = date.toLocaleString("default", { month: "short" });
   const year = date.toLocaleString("default", { year: "numeric" });
   return `${day} ${month} ${year}`;
+};
+
+export const getFormattedTime = (dateString) => {
+  const date = new Date(dateString);
+  // const day = date.toLocaleString("default", { day: "2-digit" });
+  // const month = date.toLocaleString("default", { month: "short" });
+  // const year = date.toLocaleString("default", { year: "numeric" });
+  const time = date.toLocaleString("default", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return time;
 };
 
 export const getLessonStatus = (startDateString, endDateString) => {
