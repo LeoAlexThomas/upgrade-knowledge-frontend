@@ -12,7 +12,7 @@ const SecondaryButton = ({
   return (
     <button
       className={`${
-        isDisabled ? "bg-grey-100 opacity-50" : "bg-white hover:bg-grey-50"
+        isDisabled ? "bg-grey-100 opacity-50" : "bg-white hover:bg-gray-50"
       } text-primary text-base font-medium rounded-xl w-full max-w-full ${
         showBiggerButton ? "py-4" : "py-1.5"
       } px-4 border border-primary ${fullWidth ? "" : "sm:max-w-fit"} ${

@@ -1,17 +1,12 @@
-import { getFormattedTime } from "../Utils/common";
+import { getFormattedDateTime } from "../Utils/common";
 
-const TimeSlot = ({ slot }) => {
-  const handleSlotSelection = () => {
-    // Handle slot selection logic here
-    console.log("Selected slot:", slot);
-  };
-
+const TimeSlot = ({ slot, onSlotClicked }) => {
   return (
     <div
       className="text-sm shrink-0 font-medium text-neutral-600 shadow-sm p-2 rounded-md hover:bg-neutral-100 cursor-pointer border"
-      onClick={handleSlotSelection}
+      onClick={onSlotClicked}
     >
-      {getFormattedTime(slot)}
+      {getFormattedDateTime({ date: slot, isTimeOnly: true })}
     </div>
   );
 };
