@@ -48,11 +48,11 @@ const MyProfile = () => {
     setEditBioIsOpen(true);
   };
 
-  const handleEditSkillModalClose = () => {
+  const handleEditSubjectsModalClose = () => {
     setEditSkillIsOpen(false);
   };
 
-  const handleEditSkillModalOpen = () => {
+  const handleEditSubjectsModalOpen = () => {
     setEditSkillIsOpen(true);
   };
 
@@ -68,8 +68,8 @@ const MyProfile = () => {
     handleEditBioModalOpen();
   };
 
-  const handleEditSkill = () => {
-    handleEditSkillModalOpen();
+  const handleEditSubjects = () => {
+    handleEditSubjectsModalOpen();
   };
 
   // const studentInfo = user.student;
@@ -92,10 +92,10 @@ const MyProfile = () => {
       </CustomModal>
       <CustomModal
         isOpen={isEditSkillOpen}
-        onClose={handleEditSkillModalClose}
+        onClose={handleEditSubjectsModalClose}
         title="Edit Skills"
       >
-        <EditSkillForm onClose={handleEditSkillModalClose} />
+        <EditSkillForm onClose={handleEditSubjectsModalClose} />
       </CustomModal>
       <div className="flex flex-col gap-4 col-span-2 ">
         <h2 className="font-Title text-2xl font-bold mt-2">Basic info</h2>
@@ -134,9 +134,9 @@ const MyProfile = () => {
           </section>
           {currentUser.role === "tutor" && (
             <section>
-              <ProfileHeader title="Skills" onEdit={handleEditSkill} />
+              <ProfileHeader title="Subjects" onEdit={handleEditSubjects} />
               <p className="text-sm font-medium text-neutral-600 ">
-                {currentUser.skills.join(", ")}
+                {currentUser.subjects.join(", ")}
               </p>
             </section>
           )}

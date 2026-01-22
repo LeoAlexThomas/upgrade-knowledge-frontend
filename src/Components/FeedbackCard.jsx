@@ -4,7 +4,7 @@ import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 
 const FeedbackCard = ({ feedback }) => {
   return (
-    <div className="flex flex-col gap-1 items-start max-w-64 rounded-lg shadow-md p-4 shrink-0">
+    <div className="flex flex-col gap-1 items-start max-w-sm rounded-lg shadow-md p-4 shrink-0">
       <p className="text-sm text-neutral-600 font-bold">{feedback.content}</p>
       <p className="text-base font-semibold">{feedback.lessonTitle}</p>
       <div className="flex gap-1 mb-1 items-center justify-center justify-self-end-safe">
