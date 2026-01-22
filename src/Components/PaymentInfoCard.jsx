@@ -1,5 +1,5 @@
 import React from "react";
-import { getFormattedDate } from "../Utils/common";
+import { getFormattedDateTime } from "../Utils/common";
 import { MdDateRange } from "react-icons/md";
 
 const PaymentInfoCard = ({ payment }) => {
@@ -9,8 +9,8 @@ const PaymentInfoCard = ({ payment }) => {
         payment.status === "success"
           ? "bg-secondary-hover"
           : payment.status === "pending"
-          ? "bg-primary-hover"
-          : "bg-red-800"
+            ? "bg-primary-hover"
+            : "bg-red-800"
       } text-white`}
     >
       <h5 className="font-Title text-xl font-bold mb-2 whitespace-break-spaces">
@@ -23,8 +23,8 @@ const PaymentInfoCard = ({ payment }) => {
               payment.status === "success"
                 ? "bg-secondary"
                 : payment.status === "pending"
-                ? "bg-primary"
-                : "bg-red-400"
+                  ? "bg-primary"
+                  : "bg-red-400"
             }
             rounded-lg py-2 px-4 text-white font-bold mb-2 w-fit text-center`}
       >
@@ -33,7 +33,7 @@ const PaymentInfoCard = ({ payment }) => {
       <div className="flex gap-1 items-center mt-2">
         <MdDateRange className="w-5 h-5 text-white" />
         <p className="text-sm font-medium text-gray-200">
-          {getFormattedDate(payment.date)}
+          {getFormattedDateTime({ date: payment.date, isDateOnly: true })}
         </p>
       </div>
     </section>

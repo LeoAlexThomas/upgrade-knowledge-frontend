@@ -12,6 +12,54 @@ export const subjectsList = [
   "English",
   "History",
   "Geography",
+  "Computer Science",
+  "Art",
+  "Music",
+  "Physical Education",
+  "Economics",
+  "Business Studies",
+  "Psychology",
+  "Sociology",
+  "Philosophy",
+  "Political Science",
+  "Environmental Science",
+  "Statistics",
+  "Calculus",
+  "Algebra",
+  "Geometry",
+  "Trigonometry",
+  "Biochemistry",
+  "Microbiology",
+  "Astronomy",
+  "Astrophysics",
+  "Geology",
+  "Anthropology",
+  "Linguistics",
+  "Literature",
+  "Creative Writing",
+  "Drama",
+  "Film Studies",
+  "Photography",
+  "Graphic Design",
+  "Web Development",
+  "App Development",
+  "Data Science",
+  "Machine Learning",
+  "Artificial Intelligence",
+  "Cybersecurity",
+  "Networking",
+  "Cloud Computing",
+  "Software Engineering",
+  "Project Management",
+  "Marketing",
+  "Finance",
+  "Accounting",
+  "Law",
+  "Medicine",
+  "Nursing",
+  "Pharmacy",
+  "Dentistry",
+  "Veterinary Science",
 ];
 
 export const currentUser = {
@@ -19,6 +67,7 @@ export const currentUser = {
   name: "Leo Alex Thomas",
   email: "leoalex960@gmail.com",
   role: "tutor",
+  pricePerSession: 299,
   bio: "I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it. I am a student from USA and I am learning to code from scratch and I am very passionate about it.",
   subjects: [
     "Maths",
@@ -28,54 +77,6 @@ export const currentUser = {
     "English",
     "History",
     "Geography",
-    "Computer Science",
-    "Art",
-    "Music",
-    "Physical Education",
-    "Economics",
-    "Business Studies",
-    "Psychology",
-    "Sociology",
-    "Philosophy",
-    "Political Science",
-    "Environmental Science",
-    "Statistics",
-    "Calculus",
-    "Algebra",
-    "Geometry",
-    "Trigonometry",
-    "Biochemistry",
-    "Microbiology",
-    "Astronomy",
-    "Astrophysics",
-    "Geology",
-    "Anthropology",
-    "Linguistics",
-    "Literature",
-    "Creative Writing",
-    "Drama",
-    "Film Studies",
-    "Photography",
-    "Graphic Design",
-    "Web Development",
-    "App Development",
-    "Data Science",
-    "Machine Learning",
-    "Artificial Intelligence",
-    "Cybersecurity",
-    "Networking",
-    "Cloud Computing",
-    "Software Engineering",
-    "Project Management",
-    "Marketing",
-    "Finance",
-    "Accounting",
-    "Law",
-    "Medicine",
-    "Nursing",
-    "Pharmacy",
-    "Dentistry",
-    "Veterinary Science",
   ],
   profileImage:
     "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
@@ -88,6 +89,7 @@ export const otherUser = {
   name: "John Andrew",
   email: "johnandrew960@gmail.com",
   role: "tutor",
+  pricePerSession: 500,
   bio: "I am a tutor from UK and I have been teaching for 10 years. I specialize in Mathematics and Physics. I love to help students achieve their goals and excel in their studies.",
   subjects: [
     "Anthropology",
@@ -731,24 +733,22 @@ export const unAuthorizedPaths = [
   "/resetPassword",
 ];
 
-export const getFormattedDate = (dateString) => {
-  const date = new Date(dateString);
-  const day = date.toLocaleString("default", { day: "2-digit" });
-  const month = date.toLocaleString("default", { month: "short" });
-  const year = date.toLocaleString("default", { year: "numeric" });
-  return `${day} ${month} ${year}`;
-};
-
-export const getFormattedTime = (dateString) => {
-  const date = new Date(dateString);
-  // const day = date.toLocaleString("default", { day: "2-digit" });
-  // const month = date.toLocaleString("default", { month: "short" });
-  // const year = date.toLocaleString("default", { year: "numeric" });
-  const time = date.toLocaleString("default", {
+export const getFormattedDateTime = ({ date, isDateOnly, isTimeOnly }) => {
+  const newDate = new Date(date);
+  const day = newDate.toLocaleString("default", { day: "2-digit" });
+  const month = newDate.toLocaleString("default", { month: "short" });
+  const year = newDate.toLocaleString("default", { year: "numeric" });
+  const time = newDate.toLocaleString("default", {
     hour: "2-digit",
     minute: "2-digit",
   });
-  return time;
+  if (isDateOnly) {
+    return `${day} ${month} ${year}`;
+  }
+  if (isTimeOnly) {
+    return `${time}`;
+  }
+  return `${day} ${month} ${year} ${time}`;
 };
 
 export const getLessonStatus = (startDateString, endDateString) => {

@@ -1,13 +1,13 @@
 import React from "react";
 import { MdDateRange } from "react-icons/md";
-import { getFormattedDate, getLessonStatus } from "../Utils/common";
+import { getFormattedDateTime, getLessonStatus } from "../Utils/common";
 import { useNavigate } from "react-router-dom";
 
 const LessonCard = ({ lesson }) => {
   const navigate = useNavigate();
   const lessonStatus = getLessonStatus(
     lesson.sessionStartDate,
-    lesson.sessionEndDate
+    lesson.sessionEndDate,
   ); // lesson status
 
   const handleLessonClick = () => {
@@ -31,8 +31,15 @@ const LessonCard = ({ lesson }) => {
         <div className="flex items-center gap-1">
           <MdDateRange className="w-5 h-5 text-primary" />
           <p className="text-sm text-neutral-500 ">
-            {getFormattedDate(lesson.sessionStartDate)} -{" "}
-            {getFormattedDate(lesson.sessionEndDate)}
+            {getFormattedDateTime({
+              date: lesson.sessionStartDate,
+              isDateOnly: true,
+            })}{" "}
+            -{" "}
+            {getFormattedDateTime({
+              date: lesson.sessionEndDate,
+              isDateOnly: true,
+            })}
           </p>
         </div>
       </div>

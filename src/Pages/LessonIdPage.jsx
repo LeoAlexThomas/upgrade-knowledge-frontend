@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import {
-  allLessons,
-  getFormattedDate,
-  myFeedbacks,
-  myLessons,
-} from "../Utils/common";
+import { allLessons, getFormattedDateTime, myFeedbacks } from "../Utils/common";
 import { useParams } from "react-router-dom";
 import FeedbackCard from "../Components/FeedbackCard";
 import PrimaryButton from "../Components/PrimaryButton";
@@ -46,7 +41,11 @@ const LessonIdPage = () => {
             {lesson.payment.isPaid ? (
               <div className="w-full">
                 <p className="mb-2">
-                  Payment Date: {getFormattedDate(lesson.payment.paymentDate)}
+                  Payment Date:{" "}
+                  {getFormattedDateTime({
+                    date: lesson.payment.paymentDate,
+                    isDateOnly: true,
+                  })}
                 </p>
                 <PrimaryButton
                   fullWidth={true}
@@ -70,8 +69,15 @@ const LessonIdPage = () => {
             <div className="flex items-center gap-1">
               <MdDateRange className="w-6 h-6 text-primary" />
               <p className="text-lg text-neutral-500 ">
-                {getFormattedDate(lesson.sessionStartDate)} -{" "}
-                {getFormattedDate(lesson.sessionEndDate)}
+                {getFormattedDate({
+                  date: lesson.sessionStartDate,
+                  isDateOnly: true,
+                })}{" "}
+                -{" "}
+                {getFormattedDate({
+                  date: lesson.sessionEndDate,
+                  isDateOnly: true,
+                })}
               </p>
             </div>
           </div>

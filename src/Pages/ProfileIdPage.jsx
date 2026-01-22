@@ -2,7 +2,7 @@ import ProfileSection from "../Components/ProfileSection.jsx";
 import { useLocation, useParams } from "react-router-dom";
 import { Fragment, useState } from "react";
 import {
-  getFormattedDate,
+  getFormattedDateTime,
   getUserRoleLabel,
   myFeedbacks,
   myLessons,
@@ -23,14 +23,44 @@ import { FaCalendarAlt } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import CustomModal from "../Components/Modals/CustomModal.jsx";
+import SlotBooking from "../Components/SlotBooking.jsx";
 
 const ProfileIdPage = () => {
   const { id } = useParams();
   const location = useLocation();
-  const [selectAvailability, setSelectAvailability] = useState(new Date());
+  const [selectAvailabilityDate, setSelectAvailabilityDate] = useState(
+    new Date(),
+  );
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [isSlotBookingOpen, setIsSlotBookingOpen] = useState(false);
+
+  const handleSlotBookingClose = () => {
+    setIsSlotBookingOpen(false);
+  };
+
+  const handleSlotBookingOpen = () => {
+    setIsSlotBookingOpen(true);
+  };
+
+  const handleSlotClicked = (slot) => {
+    setSelectedSlot(slot);
+    handleSlotBookingOpen();
+  };
 
   return (
     <div className="w-full max-w-360 mx-auto px-4 py-2 my-6 gap-4 flex flex-col">
+      <CustomModal
+        isOpen={isSlotBookingOpen}
+        onClose={handleSlotBookingClose}
+        title="Book a Slot"
+      >
+        <SlotBooking
+          slot={selectedSlot}
+          tutor={otherUser}
+          onClose={handleSlotBookingClose}
+        />
+      </CustomModal>
       {/* Basic info */}
       <div className="flex gap-4 justify-center items-center self-center max-w-2xl mb-4">
         <div className="relative w-32 h-32 rounded-full shadow-md ">
@@ -53,6 +83,12 @@ const ProfileIdPage = () => {
           <p className="font-Title text-lg font-bold text-secondary">
             {getUserRoleLabel(otherUser.role)}
           </p>
+          {otherUser.role === "tutor" && (
+            <p className="font-Title text-lg font-bold">
+              ${otherUser.pricePerSession}{" "}
+              <span className="font-medium">per session</span>
+            </p>
+          )}
           {otherUser.role === "tutor" && (
             <div className="flex gap-1 mb-1 items-center">
               <Rating
@@ -87,13 +123,16 @@ const ProfileIdPage = () => {
           title="My Availability"
           subSection={
             <DatePicker
-              value={selectAvailability}
-              onChange={setSelectAvailability}
+              value={selectAvailabilityDate}
+              onChange={setSelectAvailabilityDate}
               customInput={
                 <div className="flex justify-center gap-2 items-center border border-secondary-hover p-2 rounded-md cursor-pointer shadow-md w-36 bg-secondary hover:bg-secondary-hover text-white hover:shadow-lg ">
                   <FaCalendarAlt className="w-5 h-5" />
                   <p className="pt-0.5">
-                    {getFormattedDate(selectAvailability.toISOString())}
+                    {getFormattedDateTime({
+                      date: selectAvailabilityDate.toISOString(),
+                      isDateOnly: true,
+                    })}
                   </p>
                 </div>
               }
@@ -107,7 +146,10 @@ const ProfileIdPage = () => {
               {tutorAvailabilitySlots.map((slot, index) => {
                 return (
                   <Fragment key={index}>
-                    <TimeSlot slot={slot} />
+                    <TimeSlot
+                      slot={slot}
+                      onSlotClicked={() => handleSlotClicked(slot)}
+                    />
                   </Fragment>
                 );
               })}
